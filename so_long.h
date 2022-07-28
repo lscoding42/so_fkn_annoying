@@ -6,7 +6,7 @@
 /*   By: Louisa <Louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 00:13:47 by lhafsi            #+#    #+#             */
-/*   Updated: 2022/07/19 04:58:15 by Louisa           ###   ########.fr       */
+/*   Updated: 2022/07/28 17:52:13 by Louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,12 @@ int	ft_count_lines(char *map);
 // SRCS > PARSING > CHECK_MAP_UTILS.C
 int	ft_check_wall(char *line);
 int	ft_check_mid(char *line);
-// int	ft_check_map(char **map);
+int	ft_run_checks(char **map);
+
+// SRCS > PARSING > CHECK_MAP_UTILS.C
+int	ft_dstrlen(char **str);
+int	ft_is_char_ok(char *line);
+int	ft_count_c(char **map, char c);
+int	ft_count_CEP(char **map);
+
 #endif
