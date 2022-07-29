@@ -6,7 +6,7 @@
 /*   By: Louisa <Louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 00:13:47 by lhafsi            #+#    #+#             */
-/*   Updated: 2022/07/28 18:15:57 by Louisa           ###   ########.fr       */
+/*   Updated: 2022/07/28 19:17:07 by Louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_dstrlen(char **str)
 	return(i);
 }
 
-int	ft_is_char_ok(char *line)
+int	ft_check_c(char *line)
 {
 	int	i;
 
@@ -68,7 +68,6 @@ int	ft_count_CEP(char **map)
 	C = ft_count_c(map, 'C');
 	E = ft_count_c(map, 'E');
 	P = ft_count_c(map, 'P');
-	//printf("C = %i // E = %i // P = %i\n", C, E, P);
 	if (C < 1 || E < 1 || P < 1)
 		return (0);
 	return (1);

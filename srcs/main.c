@@ -6,73 +6,34 @@
 /*   By: Louisa <Louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 03:54:20 by lhafsi            #+#    #+#             */
-/*   Updated: 2022/07/28 13:19:42 by Louisa           ###   ########.fr       */
+/*   Updated: 2022/07/29 07:10:55 by Louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-//check leaks dans ft_check_map
-
-char	*ft_map_to_str(int fd)
-{
-	char	*gnl;
-	char	*str;
-
-	gnl = get_next_line(fd);
-	str = malloc(sizeof(char) * (ft_strlen(gnl) + 1));
-	while (gnl != NULL)
-	{
-		str = ft_strjoin(str, gnl);
-		free (gnl);
-		gnl = get_next_line(fd);
-	}
-	free(gnl);
-	return(str);
-}
-
-int	ft_is_map_valid(char *str)
-{
-	char **map;
-	int i;
-
-	map = ft_split(str, '\n');
-	if (map == NULL)
-		return (0);
-	if (ft_run_checks(map) == 0)
-		return (0);
-	return (1);
-}
-
-int	ft_manage_gnl(char *map)
-{	
-	int		fd;
-	int		ok;
-	char	*str;
-
-	ok = -1;
-	fd = open(map, O_RDONLY);
-	str = ft_map_to_str(fd)
-;	if (fd > 0)
-	{
-		if (ft_is_map_valid(str) == 1)
-			ok = 1;
-		close(fd);
-	}
-	return(ok);
-}
-
 int	main(int ac, char **av)
 {
 	int		ok;
 
-	ok = ft_manage_gnl(av[1]);
-	if (ac != 2)
+	if (ac != 2 || !av[1])
+	{
+		write(1,"Error\n", 6);
+		write(1,"Input incorrect: enter 1 existing map file.\n", 35);
 		return (0);
+	}
+	if (ft_file_name(av[1]) == 0)
+	{
+		write(1,"Error\n", 6);
+		write(1,"File name incorrect: name should include at least 1 letter and end with the .ber extension.\n", 92);
+		return (0);
+	}
+	ok = ft_manage_gnl(av[1]);
 	if (ok == -1)
-		printf("pb with map\n");
-	else if (ok == 1)
-		printf("no pb\n");
+	{
+		write(1,"Error\n", 6);
+		write(1,"Map format incorrect.\n", 22);
+	}
 	return (0);
 }
 

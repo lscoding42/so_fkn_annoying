@@ -6,11 +6,25 @@
 /*   By: Louisa <Louisa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 00:13:47 by lhafsi            #+#    #+#             */
-/*   Updated: 2022/07/28 18:15:54 by Louisa           ###   ########.fr       */
+/*   Updated: 2022/07/28 19:27:37 by Louisa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
+
+int	ft_check_rectangle(char **map)
+{
+	int	i;
+
+	i = 1;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) != ft_strlen(map[0]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	ft_check_wall(char *line)
 { 
@@ -39,7 +53,7 @@ int	ft_check_mid(char *line)
 	i = 1;
 	while (line[i] && i < j - 1)
 	{	
-		if (ft_is_char_ok(line) == 0)
+		if (ft_check_c(line) == 0)
 			return (0);
 		i++;
 	}
@@ -54,7 +68,7 @@ int	ft_run_checks(char **map)
 	int	size;
 
 	size = ft_dstrlen(map);
-	if (ft_check_wall(map[0]) == 0 || ft_count_CEP(map) == 0)
+	if (!ft_check_wall(map[0]) || !ft_count_CEP(map) || !ft_check_rectangle(map))
 		return (0);
 	i = 1;
 	while (map[i] && i < size - 1)
